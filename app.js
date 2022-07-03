@@ -149,6 +149,8 @@ function writeData(data) {
       }
     }
 
+    console.log(dayOfWeek);
+
     // ispisuje rezultate u DOM
     // glavni rezultati vremena
     resultDiv.innerHTML = `
@@ -159,7 +161,7 @@ function writeData(data) {
         <small>
           <span class="time">${splitTime(localTime)}</span>
           -
-          <span class="date">${dayOfWeek()} :  ${
+          <span class="date">${dayOfWeek()}  ${
       removeFirstChar(splitDate(localTime)) < 10
         ? removeFirstChar(splitDate(localTime))
         : split(localTime)

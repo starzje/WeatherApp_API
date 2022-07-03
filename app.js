@@ -43,6 +43,7 @@ function writeData(data) {
     const feelsLike = data.current.feelslike_c; // očekivana temperatura
     const currentWind = data.current.wind_kph; // trenutni vjetar
     const randomNumber = Math.floor(Math.random() * 5) + 1; //random broj do 5 za sliku
+    const localTime = data.location.localtime; // trenutno vrijeme
 
     // ako je vani sunčano, postavlja se slika za vrijeme sa suncem
     if (data.current.condition.code === 1000) {
@@ -156,9 +157,13 @@ function writeData(data) {
         <div class="city-time">
         <h1 class="name">${cityName}</h1>
         <small>
-          <span class="time">${currentTime()}</span>
+          <span class="time">${splitTime(localTime)}</span>
           -
-          <span class="date">${dayOfWeek()} ${currentDate()}</span>
+          <span class="date">${dayOfWeek()} :  ${
+      removeFirstChar(splitDate(localTime)) < 10
+        ? removeFirstChar(splitDate(localTime))
+        : split(localTime)
+    }</span>
         </small>
         </div>
         <div class="weather">
@@ -235,4 +240,26 @@ function dayOfWeek() {
 function getPicture(currentCondition, nightOrDay, number) {
   return (currentPicture =
     "./imgsrc/" + currentCondition + "-" + nightOrDay + number + "-min.jpg");
+}
+
+// get current hours
+function splitTime(localTime) {
+  const time = localTime.split(" ");
+  const timeSplit = time[1].split(":");
+  const hour = timeSplit[0];
+  const minutes = timeSplit[1];
+  return `${hour}:${minutes}`;
+}
+
+//get current day
+function splitDate(localTime) {
+  const time = localTime.split(" ");
+  const date = time[0].split("-");
+  const day = date[2];
+  return `${day}`;
+}
+
+//remove first char of date -> 08 -> 7
+function removeFirstChar(string) {
+  return string.substring(1);
 }

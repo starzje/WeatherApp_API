@@ -172,6 +172,16 @@ h3 {
   top: initial;
   overflow: hidden;
  }
+
+ .temp {
+  font-size: 3rem;
+  width: 3em;
+
+ }
+
+ .name {
+  font-size: 1.5rem;
+ }
 }
 
 @media screen and (max-width:500px) {

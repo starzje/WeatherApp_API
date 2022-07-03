@@ -122,6 +122,7 @@ h3 {
 }
 
 #input {
+ font-size: 1rem;
  width: 100%;
  padding: 1em;
  border: none;
@@ -177,10 +178,19 @@ h3 {
   font-size: 3rem;
   width: 3em;
 
+
+ }
+
+ #results-container {
+  gap: 0;
  }
 
  .name {
   font-size: 1.5rem;
+ }
+
+ .city-time {
+  width: 10em;
  }
 }
 

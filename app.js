@@ -234,5 +234,5 @@ function dayOfWeek() {
 // funkcija koja vraća sliku za trenutno vrijeme
 function getPicture(currentCondition, nightOrDay, number) {
   return (currentPicture =
-    "./imgsrc/" + currentCondition + "-" + nightOrDay + number + ".jpg");
+    "./imgsrc/" + currentCondition + "-" + nightOrDay + number + "-min.jpg");
 }

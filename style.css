@@ -1,0 +1,187 @@
+body {
+ margin: 0;
+ font-family: 'Rubik', sans-serif;
+ background: #111;
+}
+
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+h1,
+h3 {
+ font-weight: 400;
+}
+
+#title {
+ text-align: center;
+}
+
+.no_data {
+ font-size: 3rem;
+}
+
+.weather-app {
+ min-height: 100vh;
+ background-image: url(./imgsrc/sunny-day1.jpg);
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ color: #fff;
+ position: relative;
+ transition: 1.5s;
+ opacity: 0;
+}
+
+.weather-app::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, 0.3);
+ z-index: 0;
+}
+
+.container {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: flex-start;
+ flex-direction: column;
+ padding: 2em 3em 4em 3em
+}
+
+.panel {
+ position: absolute;
+ display: flex;
+ flex-direction: column;
+ gap: 5em;
+ width: 40%;
+ height: 100%;
+ top: 0;
+ right: 0;
+ background: rgba(110, 110, 110, 0.25);
+ box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+ backdrop-filter: blur(10px);
+ -webkit-backdrop-filter: blur(10px);
+ border: 1px solid rgba(255, 255, 255, 0.18);
+ z-index: 1;
+ padding: 3em 0em;
+ overflow-y: scroll;
+}
+
+
+
+#results-container {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 2em;
+}
+
+.temp {
+ font-size: 5rem;
+}
+
+.city-time {
+ font-size: 1.1rem;
+ display: flex;
+ flex-direction: column;
+ gap: 0.8em;
+}
+
+.time {
+ font-size: 1.1rem;
+}
+
+.weather {
+ display: flex;
+
+ flex-direction: column;
+ justify-content: flex-end;
+ align-items: baseline;
+}
+
+.condition {
+ margin-left: 5px;
+}
+
+#form {
+ display: flex;
+ padding: 0 2em;
+ flex-direction: column;
+ gap: 1em;
+}
+
+#input {
+ width: 100%;
+ padding: 1em;
+ border: none;
+ border-radius: 10px;
+ background: rgba(255, 255, 255, 0.8);
+ border: 1px solid #4973ff;
+}
+
+#button {
+ cursor: pointer;
+ width: 100%;
+ font-size: 1.1rem;
+ padding: 0.5em;
+ border: none;
+ border-radius: 10px;
+ color: #fff;
+ background-color: #4973ff;
+ transition: 500ms;
+}
+
+#button:hover {
+ background-color: #ffaa49;
+
+}
+
+.info_items {
+ height: 100%;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ gap: 2em;
+}
+
+.info_items>li {
+ list-style-type: none;
+ background: rgba(110, 110, 110, 0.50);
+ box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+ padding: 1em;
+ padding-left: 2em;
+}
+
+@media screen and (max-width:800px) {
+
+ .panel,
+ .container {
+  position: relative;
+  width: 100%;
+  top: initial;
+  overflow: hidden;
+ }
+}
+
+@media screen and (max-width:500px) {
+ html {
+  font-size: 12px;
+ }
+}
+
+@media screen and (max-height:360px) {
+ .weather-app {
+  min-height: 40em;
+ }
+}

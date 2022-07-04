@@ -1,11 +1,11 @@
-const button = document.getElementById("button");
-const input = document.getElementById("input");
-const resultDiv = document.getElementById("results");
-const background = document.querySelector(".weather-app");
-const additionalInfo = document.getElementById("additional_info");
+const button = document.getElementById("button"); //glavno dugme za pretraživanje
+const input = document.getElementById("input"); //input polje za unos grada
+const resultDiv = document.getElementById("results"); //div u koji se upisuju podaci
+const background = document.querySelector(".weather-app"); //dohvati div kontenjer u kojem je cijela app
+const additionalInfo = document.getElementById("additional_info"); //div kontenjer s desne strane app-a
 
-button.addEventListener("click", checkWeather);
-document.addEventListener("DOMContentLoaded", checkWeather);
+button.addEventListener("click", checkWeather); //dodaje event listener na dugme
+document.addEventListener("DOMContentLoaded", checkWeather); //kada se DOM učita, pozovi funkciju checkWeather
 
 // funkcija koja dohvaca podatke o vremenu
 async function checkWeather(e) {
@@ -43,7 +43,7 @@ function writeData(data) {
     const feelsLike = data.current.feelslike_c; // očekivana temperatura
     const currentWind = data.current.wind_kph; // trenutni vjetar
     const randomNumber = Math.floor(Math.random() * 5) + 1; //random broj do 5 za sliku
-    const localTime = data.location.localtime; // trenutno vrijeme
+    const localTime = data.location.localtime; // trenutno vrijeme lokacije koju pretražujemo
 
     // ako je vani sunčano, postavlja se slika za vrijeme sa suncem
     if (data.current.condition.code === 1000) {
@@ -149,8 +149,6 @@ function writeData(data) {
       }
     }
 
-    console.log(dayOfWeek);
-
     // ispisuje rezultate u DOM
     // glavni rezultati vremena
     resultDiv.innerHTML = `
@@ -159,13 +157,13 @@ function writeData(data) {
         <div class="city-time">
         <h1 class="name">${cityName}</h1>
         <small>
-          <span class="time">${splitTime(localTime)}</span>
+          <span class="time">${trenutnoVrijemePretrazivanogGrada(
+            localTime
+          )}</span>
           -
-          <span class="date">${dayOfWeek()}  ${
-      removeFirstChar(splitDate(localTime)) < 10
-        ? removeFirstChar(splitDate(localTime))
-        : split(localTime)
-    }</span>
+          <span class="date">${dayOfWeek()}, ${currentMonth()} ${removeFirstChar(
+      trenutniDatumPretrazivanogGrada(localTime)
+    )}</span>
         </small>
         </div>
         <div class="weather">
@@ -192,10 +190,9 @@ function writeData(data) {
 
 // ---------------------------------------------FUNKCIJE-----------------------------------------------------
 
-// funkcija koja vraca trenutni datum
-function currentDate() {
+// funkcija koja vraca trenutni datum s lokalnog računala
+function currentMonth() {
   const date = new Date();
-  const day = date.getDate();
   const month = date.getMonth();
   const months = [
     "Jan",
@@ -211,18 +208,10 @@ function currentDate() {
     "Nov",
     "Dec",
   ];
-  return `${months[month]} ${day} `;
+  return `${months[month]} `;
 }
 
-// funkcija koja vraća trenutno vrijeme
-function currentTime() {
-  const date = new Date();
-  const hour = date.getHours();
-  const minutes = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes(); // ako je broj minuta manji od 10 dodaj 0 da se pokazu dvije decimale npr 14:00 umjetso 14:0
-  return `${hour}:${minutes}`;
-}
-
-// funkcija koja vraća trenutni dan
+// funkcija koja vraća trenutni dan s lokalnog računala
 function dayOfWeek() {
   const date = new Date();
   const day = date.getDay();
@@ -238,14 +227,14 @@ function dayOfWeek() {
   return days[day];
 }
 
-// funkcija koja vraća sliku za trenutno vrijeme
+// funkcija koja vraća sliku za trenutno vrijeme, prima parametre za vrijeme, dan/noć i broj slike
 function getPicture(currentCondition, nightOrDay, number) {
   return (currentPicture =
     "./imgsrc/" + currentCondition + "-" + nightOrDay + number + "-min.jpg");
 }
 
-// get current hours
-function splitTime(localTime) {
+// vraća trenutno vrijeme za lokaciju koju pretraživamo
+function trenutnoVrijemePretrazivanogGrada(localTime) {
   const time = localTime.split(" ");
   const timeSplit = time[1].split(":");
   const hour = timeSplit[0];
@@ -253,15 +242,28 @@ function splitTime(localTime) {
   return `${hour}:${minutes}`;
 }
 
-//get current day
-function splitDate(localTime) {
+//vraća trenutni dan-tj. datum za lokaciju koju pretraživamo
+function trenutniDatumPretrazivanogGrada(localTime) {
   const time = localTime.split(" ");
   const date = time[0].split("-");
   const day = date[2];
   return `${day}`;
 }
 
-//remove first char of date -> 08 -> 7
+//makni prvi znak iz stringa ako je prvi znak 0. Ovo koristimo za datum, npr 08 -> 8
 function removeFirstChar(string) {
-  return string.substring(1);
+  if (string.charAt(0) === "0") {
+    return string.slice(1);
+  } else {
+    return string;
+  }
 }
+
+// funkcija koja vraća trenutno vrijeme lokalnog računala
+
+// function currentTime() {
+//   const date = new Date();
+//   const hour = date.getHours();
+//   const minutes = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes(); // ako je broj minuta manji od 10 dodaj 0 da se pokazu dvije decimale npr 14:00 umjetso 14:0
+//   return `${hour}:${minutes}`;
+// }

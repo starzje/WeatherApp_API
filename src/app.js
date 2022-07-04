@@ -23,14 +23,8 @@ async function checkWeather(e) {
 function writeData(data) {
   // ako nema podataka ispisuje se ovo
   if (data.error) {
-    resultDiv.innerHTML = `<h5 class="no_data">no data for  ${input.value}</h5>`;
-    additionalInfo.innerHTML = `      <div class="more_information">
-<ul class="info_items">
-  <li><i class="fa-solid fa-droplet"></i> Currenty Humidity: No data</li>
-  <li><i class="fa-solid fa-temperature-half"></i> Feels like: No data </li>
-  <li><i class="fa-solid fa-wind"></i> Wind: No data</li>
-</ul>
-</div>`;
+    pokaziToast();
+    console.log(input.value);
   }
   // u suprotnom se izvršava sve ovo ispod
   else {
@@ -163,4 +157,17 @@ function trenutniDatumPretrazivanogGrada(localTime) {
 //Funckcija koja provjerava dali je vrijednost @x izmedu min i max
 function izmedu(x, min, max) {
   return x >= min && x <= max;
+}
+
+function pokaziToast() {
+  // Get the snackbar DIV
+  var x = document.getElementById("snackbar");
+
+  // Add the "show" class to DIV
+  x.className = "show";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function () {
+    x.className = x.className.replace("show", "");
+  }, 3000);
 }

@@ -69,7 +69,7 @@ function writeData(data) {
       izmedu(data.current.condition.code, 1204, 1237) ||
       izmedu(data.current.condition.code, 1249, 1282)
     ) {
-      background.style.backgroundImage = `url(${getPicure(
+      background.style.backgroundImage = `url(${getPicture(
         "snowy",
         nightOrDay
       )})`;

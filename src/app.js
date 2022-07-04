@@ -116,22 +116,6 @@ function writeData(data) {
 
 // ---------------------------------------------FUNKCIJE-----------------------------------------------------
 
-// funkcija koja vraća trenutni dan s lokalnog računala
-function dayOfWeek() {
-  const date = new Date();
-  const day = date.getDay();
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  return days[day];
-}
-
 // funkcija koja vraća sliku za trenutno vrijeme, prima parametre za vrijeme, dan/noć i broj slike
 function getPicture(currentCondition, nightOrDay, number = 1) {
   return (currentPicture =

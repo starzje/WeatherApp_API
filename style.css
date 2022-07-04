@@ -1,300 +1,283 @@
 body {
- margin: 0;
- font-family: 'Rubik', sans-serif;
- background: #111;
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+  background: #111;
 }
 
 * {
- box-sizing: border-box;
- margin: 0;
- padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 h1,
 h3 {
- font-weight: 400;
+  font-weight: 400;
 }
 
 #title {
- text-align: center;
+  text-align: center;
 }
 
 .no_data {
- font-size: 3rem;
+  font-size: 3rem;
 }
 
 .weather-app {
- min-height: 100vh;
- background-image: url(./imgsrc/sunny-day1-min.jpg);
- background-position: center;
- background-repeat: no-repeat;
- background-size: cover;
- color: #fff;
- position: relative;
- transition: 1.5s;
- opacity: 0;
+  min-height: 100vh;
+  background-image: url(./imgsrc/sunny-day1-min.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  position: relative;
+  transition: 1.5s;
+  opacity: 0;
 }
 
 .weather-app::before {
- content: '';
- position: absolute;
- top: 0;
- left: 0;
- width: 100%;
- height: 100%;
- background: rgba(0, 0, 0, 0.3);
- z-index: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 0;
 }
 
 .container {
- position: absolute;
- top: 0;
- left: 0;
- width: 100%;
- height: 100%;
- display: flex;
- justify-content: center;
- align-items: flex-start;
- flex-direction: column;
- padding: 2em 3em 4em 3em
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 2em 3em 4em 3em
 }
 
 .panel {
- position: absolute;
- display: flex;
- flex-direction: column;
- gap: 5em;
- width: 40%;
- height: 100%;
- top: 0;
- right: 0;
- background: rgba(110, 110, 110, 0.25);
- box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
- backdrop-filter: blur(10px);
- -webkit-backdrop-filter: blur(10px);
- border: 1px solid rgba(255, 255, 255, 0.18);
- z-index: 1;
- padding: 3em 0em;
- overflow-y: scroll;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+  width: 40%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background: rgba(110, 110, 110, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 1;
+  padding: 3em 0em;
+  overflow-y: scroll;
 }
 
 
 
 #results-container {
- display: flex;
- align-items: center;
- justify-content: center;
- gap: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
 }
 
 .temp {
- font-size: 5rem;
+  font-size: 5rem;
 }
 
 .city-time {
- font-size: 1.1rem;
- display: flex;
- flex-direction: column;
- gap: 0.8em;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
 }
 
 .time {
- font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 
 .weather {
- display: flex;
+  display: flex;
 
- flex-direction: column;
- justify-content: flex-end;
- align-items: baseline;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: baseline;
 }
 
 .condition {
- margin-left: 5px;
+  margin-left: 5px;
 }
 
 #form {
- display: flex;
- padding: 0 2em;
- flex-direction: column;
- gap: 1em;
+  display: flex;
+  padding: 0 2em;
+  flex-direction: column;
+  gap: 1em;
 }
 
 #input {
- font-size: 1rem;
- width: 100%;
- padding: 1em;
- border: none;
- border-radius: 10px;
- background: rgba(255, 255, 255, 0.8);
- border: 1px solid #4973ff;
+  font-size: 1rem;
+  width: 100%;
+  padding: 1em;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #4973ff;
 }
 
 #button {
- cursor: pointer;
- width: 100%;
- font-size: 1.1rem;
- padding: 0.5em;
- border: none;
- border-radius: 10px;
- color: #fff;
- background-color: #4973ff;
- transition: 500ms;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 0.5em;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  background-color: #4973ff;
+  transition: 500ms;
 }
 
 #button:hover {
- background-color: #ffaa49;
+  background-color: #ffaa49;
 
 }
 
 .info_items {
- height: 100%;
- width: 100%;
- display: flex;
- flex-direction: column;
- gap: 2em;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }
 
 .info_items>li {
- list-style-type: none;
- background: rgba(110, 110, 110, 0.50);
- box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
- padding: 1em;
- padding-left: 2em;
+  list-style-type: none;
+  background: rgba(110, 110, 110, 0.50);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  padding: 1em;
+  padding-left: 2em;
 }
 
 /* snack */
-
-/* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
- visibility: hidden;
- /* Hidden by default. Visible on click */
- min-width: 250px;
- /* Set a default minimum width */
- margin-left: -125px;
- /* Divide value of min-width by 2 */
- background-color: rgb(207, 2, 2);
- /* Black background color */
- color: #fff;
- /* White text color */
- text-align: center;
- /* Centered text */
- border-radius: 2px;
- /* Rounded borders */
- padding: 16px;
- /* Padding */
- position: fixed;
- /* Sit on top of the screen */
- z-index: 1;
- /* Add a z-index if needed */
- left: 50%;
- /* Center the snackbar */
- bottom: 30px;
- /* 30px from the bottom */
-}
-
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
-#snackbar.show {
- visibility: visible;
- /* Show the snackbar */
- /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-   However, delay the fade out process for 2.5 seconds */
- -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
- animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-/* Animations to fade the snackbar in and out */
-@-webkit-keyframes fadein {
- from {
-  bottom: 0;
-  opacity: 0;
- }
-
- to {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: rgb(143, 0, 0);
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 1.3em;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
   bottom: 30px;
-  opacity: 1;
- }
+}
+
+/* pokazi snackbar pritiskom na tipku uz JS*/
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animacije*/
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
- from {
-  bottom: 0;
-  opacity: 0;
- }
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
 
- to {
-  bottom: 30px;
-  opacity: 1;
- }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
- from {
-  bottom: 30px;
-  opacity: 1;
- }
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
 
- to {
-  bottom: 0;
-  opacity: 0;
- }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
- from {
-  bottom: 30px;
-  opacity: 1;
- }
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
 
- to {
-  bottom: 0;
-  opacity: 0;
- }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 /* MOB */
 
 @media screen and (max-width:800px) {
 
- .panel,
- .container {
-  position: relative;
-  width: 100%;
-  top: initial;
-  overflow: hidden;
- }
+  .panel,
+  .container {
+    position: relative;
+    width: 100%;
+    top: initial;
+    overflow: hidden;
+  }
 
- .temp {
-  font-size: 3rem;
-  width: 3em;
+  .temp {
+    font-size: 3rem;
+    width: 3em;
 
 
- }
+  }
 
- #results-container {
-  gap: 0;
- }
+  #results-container {
+    gap: 0;
+  }
 
- .name {
-  font-size: 1.5rem;
- }
+  .name {
+    font-size: 1.5rem;
+  }
 
- .city-time {
-  width: 10em;
- }
+  .city-time {
+    width: 10em;
+  }
 }
 
 
 
 @media screen and (max-width:500px) {
- html {
-  font-size: 12px;
- }
+  html {
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-height:360px) {
- .weather-app {
-  min-height: 40em;
- }
+  .weather-app {
+    min-height: 40em;
+  }
 }

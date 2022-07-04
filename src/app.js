@@ -131,9 +131,9 @@ function trenutnoVrijemePretrazivanogGrada(localTime) {
 //vraća trenutni dan-tj. datum za lokaciju koju pretraživamo
 function trenutniDatumPretrazivanogGrada(localTime) {
   const date = new Date(localTime);
-  return `${date.toLocaleString("hr-HR", {
+  return `${date.toLocaleString("en-EN", {
     weekday: "long",
-  })}, ${date.getDate()} ${date.toLocaleString("hr-HR", {
+  })}, ${date.getDate()} ${date.toLocaleString("en-EN", {
     month: "short",
   })}`;
 }
@@ -145,13 +145,12 @@ function izmedu(x, min, max) {
 
 function pokaziToast() {
   // Get the snackbar DIV
-  const x = document.getElementById("snackbar");
-
+  const alertDiv = document.getElementById("snackbar");
   // Add the "show" class to DIV
-  x.className = "show";
+  alertDiv.className = "show";
 
   // After 3 seconds, remove the show class from DIV
   setTimeout(function () {
-    x.className = x.className.replace("show", "");
+    alertDiv.className = alertDiv.className.replace("show", "");
   }, 3000);
 }

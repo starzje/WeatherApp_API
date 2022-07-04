@@ -24,7 +24,7 @@ function writeData(data) {
   // ako nema podataka ispisuje se ovo
   if (data.error) {
     pokaziToast();
-    console.log(input.value);
+    input.value = "";
   }
   // u suprotnom se izvršava sve ovo ispod
   else {
@@ -161,7 +161,7 @@ function izmedu(x, min, max) {
 
 function pokaziToast() {
   // Get the snackbar DIV
-  var x = document.getElementById("snackbar");
+  const x = document.getElementById("snackbar");
 
   // Add the "show" class to DIV
   x.className = "show";

@@ -47,106 +47,38 @@ function writeData(data) {
 
     // ako je vani sunčano, postavlja se slika za vrijeme sa suncem
     if (data.current.condition.code === 1000) {
-      let currentCondition = "sunny";
-      switch (nightOrDay) {
-        // ako je dan
-        case "day": {
-          background.style.backgroundImage = `url(${getPicture(
-            currentCondition,
-            nightOrDay,
-            randomNumber
-          )})`;
-          break;
-        }
-        // ako je noć
-        case "night": {
-          background.style.backgroundImage = `url(${getPicture(
-            currentCondition,
-            nightOrDay,
-            1
-          )})`;
-          break;
-        }
-      }
+      background.style.backgroundImage = `url(${getPicture(
+        "sunny",
+        nightOrDay,
+        nightOrDay == "night" ? 1 : randomNumber
+      )})`;
     }
     // ako je vani oblačno, postavlja se slika za vrijeme sa oblacima
-    else if (
-      data.current.condition.code >= 1003 &&
-      data.current.condition.code <= 1030
-    ) {
-      let currentCondition = "cloudy";
-      switch (nightOrDay) {
-        case "day": {
-          background.style.backgroundImage = `url(${getPicture(
-            currentCondition,
-            nightOrDay,
-            1
-          )})`;
-          break;
-        }
-        case "night": {
-          background.style.backgroundImage = `url(${getPicture(
-            currentCondition,
-            nightOrDay,
-            1
-          )})`;
-          break;
-        }
-      }
+    else if (izmedu(data.current.condition.code, 1003, 1030)) {
+      background.style.backgroundImage = `url(${getPicture(
+        "cloudy",
+        nightOrDay
+      )})`;
     }
     // ako je vani kiša, postavka sliku za vrijeme sa kišom
     else if (
-      (data.current.condition.code >= 1031 &&
-        data.current.condition.code <= 1201) ||
-      (data.current.condition.code >= 1240 &&
-        data.current.condition.code <= 1249)
+      izmedu(data.current.condition.code, 1031, 1201) ||
+      izmedu(data.current.condition.code, 1240, 1249)
     ) {
-      let currentCondition = "rainy";
-      switch (nightOrDay) {
-        case "day": {
-          background.style.backgroundImage = `url(${getPicture(
-            currentCondition,
-            nightOrDay,
-            1
-          )})`;
-          break;
-        }
-        case "night": {
-          background.style.backgroundImage = `url(${getPicture(
-            currentCondition,
-            nightOrDay,
-            1
-          )})`;
-          break;
-        }
-      }
+      background.style.backgroundImage = `url(${getPicture(
+        "rainy",
+        nightOrDay
+      )})`;
     }
     // ako vani pada snijeg, postavlja se slika za vrijeme sa snijegom
     else if (
-      (data.current.condition.code >= 1204 &&
-        data.current.condition.code <= 1237) ||
-      (data.current.condition.code >= 1249 &&
-        data.current.condition.code <= 1282)
+      izmedu(data.current.condition.code, 1204, 1237) ||
+      izmedu(data.current.condition.code, 1249, 1282)
     ) {
-      let currentCondition = "snowy";
-      switch (nightOrDay) {
-        case "day": {
-          background.style.backgroundImage = `url(${getPicure(
-            currentCondition,
-            nightOrDay,
-            1
-          )})`;
-          break;
-        }
-        case "night": {
-          background.style.backgroundImage = `url(${getPicure(
-            currentCondition,
-            nightOrDay,
-            1
-          )})`;
-          break;
-        }
-      }
+      background.style.backgroundImage = `url(${getPicure(
+        "snowy",
+        nightOrDay
+      )})`;
     }
 
     // ispisuje rezultate u DOM
@@ -161,9 +93,9 @@ function writeData(data) {
             localTime
           )}</span>
           -
-          <span class="date">${dayOfWeek()}, ${currentMonth()} ${removeFirstChar(
-      trenutniDatumPretrazivanogGrada(localTime)
-    )}</span>
+          <span class="date">${trenutniDatumPretrazivanogGrada(
+            localTime
+          )}</span>
         </small>
         </div>
         <div class="weather">
@@ -190,27 +122,6 @@ function writeData(data) {
 
 // ---------------------------------------------FUNKCIJE-----------------------------------------------------
 
-// funkcija koja vraca trenutni datum s lokalnog računala
-function currentMonth() {
-  const date = new Date();
-  const month = date.getMonth();
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  return `${months[month]} `;
-}
-
 // funkcija koja vraća trenutni dan s lokalnog računala
 function dayOfWeek() {
   const date = new Date();
@@ -228,42 +139,28 @@ function dayOfWeek() {
 }
 
 // funkcija koja vraća sliku za trenutno vrijeme, prima parametre za vrijeme, dan/noć i broj slike
-function getPicture(currentCondition, nightOrDay, number) {
+function getPicture(currentCondition, nightOrDay, number = 1) {
   return (currentPicture =
     "./imgsrc/" + currentCondition + "-" + nightOrDay + number + "-min.jpg");
 }
 
 // vraća trenutno vrijeme za lokaciju koju pretraživamo
 function trenutnoVrijemePretrazivanogGrada(localTime) {
-  const time = localTime.split(" ");
-  const timeSplit = time[1].split(":");
-  const hour = timeSplit[0];
-  const minutes = timeSplit[1];
-  return `${hour}:${minutes}`;
+  const date = new Date(localTime);
+  return `${date.getHours()}:${date.getMinutes()}`;
 }
 
 //vraća trenutni dan-tj. datum za lokaciju koju pretraživamo
 function trenutniDatumPretrazivanogGrada(localTime) {
-  const time = localTime.split(" ");
-  const date = time[0].split("-");
-  const day = date[2];
-  return `${day}`;
+  const date = new Date(localTime);
+  return `${date.toLocaleString("hr-HR", {
+    weekday: "long",
+  })}, ${date.getDate()} ${date.toLocaleString("hr-HR", {
+    month: "short",
+  })}`;
 }
 
-//makni prvi znak iz stringa ako je prvi znak 0. Ovo koristimo za datum, npr 08 -> 8
-function removeFirstChar(string) {
-  if (string.charAt(0) === "0") {
-    return string.slice(1);
-  } else {
-    return string;
-  }
+//Funckcija koja provjerava dali je vrijednost @x izmedu min i max
+function izmedu(x, min, max) {
+  return x >= min && x <= max;
 }
-
-// funkcija koja vraća trenutno vrijeme lokalnog računala
-
-// function currentTime() {
-//   const date = new Date();
-//   const hour = date.getHours();
-//   const minutes = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes(); // ako je broj minuta manji od 10 dodaj 0 da se pokazu dvije decimale npr 14:00 umjetso 14:0
-//   return `${hour}:${minutes}`;
-// }

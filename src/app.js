@@ -8,10 +8,15 @@ button.addEventListener("click", checkWeather); //dodaje event listener na dugme
 document.addEventListener("DOMContentLoaded", checkWeather); //kada se DOM učita, pozovi funkciju checkWeather
 
 // funkcija koja dohvaca podatke o vremenu
-async function checkWeather(e) {
-  e.preventDefault();
+async function checkWeather(e, city) {
+  if (typeof e === "string" || e instanceof String) {
+    city = e;
+  } else {
+    e.preventDefault();
+  }
+
   // kad se funkcija pokrene, default prikazani grad je Rijeka
-  let city = input.value ? input.value : "Rijeka";
+  city = input.value ? input.value : "Rijeka";
   let data = await fetch(
     `http://api.weatherapi.com/v1/current.json?key=9e31c87e2cf54a83be093059220207&q=${city}&aqi=yes`
   );
@@ -111,6 +116,10 @@ function writeData(data) {
 
     // opacity se postavlja na 1 zbog animacije
     background.style.opacity = "1";
+    createELement();
+    loopThroughList();
+    removeListItemIfTooLong();
+    input.value = "";
   }
 }
 
@@ -153,4 +162,38 @@ function pokaziToast() {
   setTimeout(function () {
     alertDiv.className = alertDiv.className.replace("show", "");
   }, 3000);
+}
+
+// kreira novi list item od zadnje pretrage
+function createELement() {
+  const ul = document.getElementById("list");
+  const li = document.createElement("li");
+  li.classList.add("list-item");
+  if (input.value === "") {
+  } else {
+    li.appendChild(document.createTextNode(`${input.value}`));
+    ul.appendChild(li);
+  }
+}
+
+// ako je lista duza od 5, briše prvi list item
+function removeListItemIfTooLong() {
+  const ul = document.getElementById("list");
+  const li = document.getElementsByClassName("list-item");
+  if (li.length > 5) {
+    ul.removeChild(li[0]);
+  }
+}
+
+// loopa list iteme i postavlja event listener na svaki list item koji pokrece glavnu funkciju s novim inputom
+function loopThroughList() {
+  const ul = document.getElementById("list");
+  const li = document.getElementsByClassName("list-item");
+
+  for (const item of li) {
+    item.addEventListener("click", function () {
+      input.value = item.innerText;
+      checkWeather(input.value);
+    });
+  }
 }

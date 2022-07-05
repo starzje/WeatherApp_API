@@ -35,18 +35,22 @@
    <div class="panel">
     <h2 id="title">Check weather for any city</h2>
     <form id="form">
+      <div class="form-wrapper">
       <input
         id="input"
         type="text"
         onfocus="this.value=''"
         placeholder="City name"
       />
+      <div class="outcome-box">
+        <ul id="list" class="outcome_list-items">
+        </ul>
+      </div>
+      </div>
       <button id="button">Search <i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
         <div id="additional_info"></div>
-
       </div>
-
     </div>
   </main>
   <div id="snackbar"><i class="fa-solid fa-triangle-exclamation"></i><strong> Error 404:</strong> City data not found</div>
